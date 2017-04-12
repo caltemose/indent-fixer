@@ -1,10 +1,8 @@
 # indent-fixer
 
-This repository contains a NodeJS script which can be run on the command line to convert the indentation of a directory of files. It has the following capabilities:
+This repository contains a NodeJS script which can be run on the command line to convert the indentation of a directory of files. The directory provided in the arguments is recursed and file indentation is adjusted to one of the following conditions:
 
-- recurse a given directory of files
 - convert tabs to spaces (2 or 4)
-<!-- - convert spaces (2 or 4) to tabs -->
 - convert number of spaces (2 to 4 *or* 4 to 2)
 
 Currently the files to be ignored are hard-coded in the script as is the list of mime-types to allow.
