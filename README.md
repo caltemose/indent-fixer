@@ -23,3 +23,4 @@ Run `node converter.js -h` to see help for this script. Examples:
 
 - implement converting spaces to tabs
 - implement an optional config file to pass custom file globs to ignore and custom mime types to allow
+- make this work as a globally-installed node package so it's easier to use
