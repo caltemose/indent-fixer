@@ -1,0 +1,21 @@
+{
+  "name": "space-converter-magic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "converter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "args": "^2.4.2",
+    "colors": "^1.1.2",
+    "line-reader": "^0.4.0",
+    "mime": "^1.3.4",
+    "recursive-readdir": "^2.1.1",
+    "spaces-to-tabs": "0.0.2",
+    "tabs-to-spaces": "0.0.1",
+    "walk": "^2.3.9"
+  }
+}
