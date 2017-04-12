@@ -26,6 +26,15 @@ const allowedTypes = [
     'text/jsx'
 ]
 
+const allowedModes = [
+    // 'stt4',
+    // 'stt2',
+    's4ts2',
+    's2ts4',
+    'tts2',
+    'tts4'
+]
+
 args
     .option('dir', 'REQUIRED: The directory to traverse')
     .option('mode', 'REQUIRED: The conversion mode: stt4 (4 spaces to tabs), stt2 (2 spaces to tabs), tts4 (tabs to 4 spaces), tts2 (tabs to 2 spaces), s4ts2 (4 spaces to 2 spaces), s2ts4 (2 spaces to 4 spaces)')
@@ -45,6 +54,11 @@ if (!flags.dir) {
 
 if (!flags.mode) {
     console.error('A conversion mode must be provided.'.red)
+    exit = true
+}
+
+if (!allowedModes.includes(flags.mode)) {
+    console.error('You must provide a known mode.'.red)
     exit = true
 }
 
@@ -112,55 +126,47 @@ function processFile (fileIndex) {
     }
 
     let fixed = ''
+    let regex, replacement
+    const regexSpaces = /^(\s+)/g
+    const regexTabs = /^(\t+)/g
+
+    switch (flags.mode) {
+        case 's2ts4':
+            regex = regexSpaces
+            replacement = '  ' // 2 spaces
+            break
+        case 's4ts2':
+            regex = regexSpaces
+            replacement = ' ' // 1 space
+            break
+        case 'tts4':
+            regex = regexTabs
+            replacement = '    ' // 4 spaces
+            break
+        case 'tts2':
+            regex = regexTabs
+            replacement = '  ' // 2 spaces
+            break
+    }
+
     lineReader.eachLine(file, (line, last) => {
-        // convert 2 spaces to 4 spaces
-        if (flags.mode === 's2ts4') {
-            let match = line.match(/^(\s+)/g)
-            if (!match) fixed += line + eol
-            else {
-                let fix = ''
-                for(var i=0; i<match[0].length; i++) {
-                    fix += '  '
-                }
-                line = line.replace(/^(\s+)/g, fix)
-                fixed += line + eol
+        let iterationCount
+        let match = line.match(regex)
+        if (!match) fixed += line + eol
+        else {
+            switch (flags.mode) {
+                case 's4ts2':
+                    iterationCount = match[0].length/2
+                    break
+                default:
+                    iterationCount = match[0].length
+                    break
             }
-        // convert 4 spaces to 2 spaces
-        } else if (flags.mode === 's4ts2') {
-            let match = line.match(/^(\s+)/g)
-            if (!match) fixed += line + eol
-            else {
-                let fix = ''
-                for(var i=0; i<match[0].length/2; i++) {
-                    fix += ' '
-                }
-                line = line.replace(/^(\s+)/g, fix)
-                fixed += line + eol
+            let indentation = ''
+            for(var i=0; i<iterationCount; i++) {
+                indentation += replacement
             }
-        // convert tabs to 4 spaces
-        } else if (flags.mode === 'tts4') {
-            let match = line.match(/^(\t+)/g)
-            if (!match) fixed += line + eol
-            else {
-                let fix = ''
-                for(var i=0; i<match[0].length; i++) {
-                    fix += '    '
-                }
-                line = line.replace(/^(\t+)/g, fix)
-                fixed += line + eol
-            }
-        // convert tabs to 2 spaces
-        } else if (flags.mode === 'tts2') {
-            let match = line.match(/^(\t+)/g)
-            if (!match) fixed += line + eol
-            else {
-                let fix = ''
-                for(var i=0; i<match[0].length; i++) {
-                    fix += '  '
-                }
-                line = line.replace(/^(\t+)/g, fix)
-                fixed += line + eol
-            }
+            fixed += line.replace(regex, indentation) + eol
         }
 
         if (last) {
