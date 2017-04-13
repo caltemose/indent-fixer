@@ -23,8 +23,8 @@ I have not added this package to NPM. If you want to use it globally, clone/down
 
 Use one of the following modes:
 
-- stt4 (convert 4 spaces to tabs)
-- sst2 (convert 2 spaces to tabs)
+- s4ts2 (convert 4 spaces to 2 spaces)
+- s2ts4 (convert 2 spaces to 4 spaces)
 - tts4 (convert tabs to 4 spaces)
 - tts2 (convert tabs to 2 spaces)
 
