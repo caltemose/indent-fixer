@@ -44,6 +44,10 @@ Additionally, the only accepted mime-types at the moment are:
 
 This isn't exhaustive or perfect but suits my immediate needs. Edit either the ignore array (`defaultIgnores`) or the allow mimes array (`allowTypes`) in the `converter.js` file if you want to make adjustments to what files are and are not converted.
 
+## Working Directories
+
+The `originals` directory in this repo is not needed for functionality - it contains test folders I use when working on the code to make sure that conversion happens properly. Ultimately I'll delete it but for now you're stuck with it. 😉
+
 ## Disclaimer
 
 **This is by no means production quality** but it gets the job done for me. It is quasi-bulletproof but not as bulletproof as it could be.
