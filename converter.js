@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+'use strict'
+
 const args = require('args')
 const fs = require('fs')
 const recursive = require('recursive-readdir')
@@ -23,6 +26,7 @@ const allowedTypes = [
     'text/css',
     'text/x-sass', 'text/x-scss',
     'application/javascript',
+    'application/json',
     'text/jsx'
 ]
 
@@ -35,9 +39,11 @@ const allowedModes = [
     'tts4'
 ]
 
+const br = '\n                   '
+
 args
     .option('dir', 'REQUIRED: The directory to traverse')
-    .option('mode', 'REQUIRED: The conversion mode: stt4 (4 spaces to tabs), stt2 (2 spaces to tabs), tts4 (tabs to 4 spaces), tts2 (tabs to 2 spaces), s4ts2 (4 spaces to 2 spaces), s2ts4 (2 spaces to 4 spaces)')
+    .option('mode', 'REQUIRED: The conversion mode:' + br + 'stt4 (4 spaces to tabs)' + br + 'stt2 (2 spaces to tabs)' + br + 'tts4 (tabs to 4 spaces)' + br + 'tts2 (tabs to 2 spaces)' + br + 's4ts2 (4 spaces to 2 spaces)' + br + 's2ts4 (2 spaces to 4 spaces)')
     // .option('dryrun', 'Do not overwrite files - merely print a report of expected results.')
 
 const flags = args.parse(process.argv)

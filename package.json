@@ -1,6 +1,6 @@
 {
   "name": "indent-fixer",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A utility for converting indentation style in text files.",
   "main": "converter.js",
   "repository": {
@@ -8,7 +8,10 @@
     "url": "git://github.com/caltemose/indent-fixer"
   },
   "scripts": {
-      "help": "node converter.js -h"
+      "start": "node converter.js -h"
+  },
+  "bin": {
+      "fix-indentation": "./converter.js"
   },
   "homepage": "https://github.com/caltemose/indent-fixer",
   "author": "Chad L. Altemose",
