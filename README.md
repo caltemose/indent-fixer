@@ -28,6 +28,22 @@ Use one of the following modes:
 - tts4 (convert tabs to 4 spaces)
 - tts2 (convert tabs to 2 spaces)
 
+## Whitelisting and Blacklisting Files
+
+Currently the application will ignore files in a `node_modules` folder.
+
+Additionally, the only accepted mime-types at the moment are:
+
+- text/html
+- text/css
+- text/x-sass
+- text/x-scss
+- application/javascript
+- application/json
+- text/jsx
+
+This isn't exhaustive or perfect but suits my immediate needs. Edit either the ignore array (`defaultIgnores`) or the allow mimes array (`allowTypes`) in the `converter.js` file if you want to make adjustments to what files are and are not converted.
+
 ## Disclaimer
 
 **This is by no means production quality** but it gets the job done for me. It is quasi-bulletproof but not as bulletproof as it could be.
