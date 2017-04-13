@@ -15,6 +15,19 @@ Run `node converter.js -h` to see help for this script. Examples:
 
 `node converter.js -d ./directory-to-parse -m tts4` (convert tabs to 4 spaces)
 
+## Installing Globally
+
+I have not added this package to NPM. If you want to use it globally, clone/download the repo, install the dependencies and then run `npm link` from the repo directory to add this to your global packages. You can then run the app from the cli like so:
+
+`fix-indentation -d <dir> -m <mode>`
+
+Use one of the following modes:
+
+- stt4 (convert 4 spaces to tabs)
+- sst2 (convert 2 spaces to tabs)
+- tts4 (convert tabs to 4 spaces)
+- tts2 (convert tabs to 2 spaces)
+
 ## Disclaimer
 
 **This is by no means production quality** but it gets the job done for me. It is quasi-bulletproof but not as bulletproof as it could be.
@@ -23,4 +36,3 @@ Run `node converter.js -h` to see help for this script. Examples:
 
 - implement converting spaces to tabs
 - implement an optional config file to pass custom file globs to ignore and custom mime types to allow
-- make this work as a globally-installed node package so it's easier to use
