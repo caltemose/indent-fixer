@@ -23,8 +23,10 @@ const defaultIgnores = [
 
 const allowedTypes = [
     'text/html',
+    'text/plain',
     'text/css',
     'text/x-sass', 'text/x-scss',
+    'application/octet-stream', // things like .pug report as this. not sure why.
     'application/javascript',
     'application/json',
     'text/jsx'
